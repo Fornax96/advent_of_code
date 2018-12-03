@@ -128,7 +128,7 @@ var boxes = []string{
 	"bvhfawcnyoqzudzrpgslhimwkj", "bzhfawvnyooxudzrpgsleimtkj",
 }
 
-func main1() {
+func main() {
 	var twos = 0
 	var threes = 0
 
@@ -153,22 +153,4 @@ func main1() {
 	}
 
 	println(twos, "*", threes, "=", twos*threes)
-}
-
-func main() {
-	for _, id1 := range boxes {
-		for _, id2 := range boxes {
-			var differ, differIndex = 0, 0
-
-			for i, rune1 := range id1 { // Compare the letters
-				if byte(rune1) != id2[i] {
-					differ++
-					differIndex = i
-				}
-			}
-			if differ == 1 {
-				println(id1, id2, "-difference", id1[:differIndex]+id1[differIndex+1:])
-			}
-		}
-	}
 }
