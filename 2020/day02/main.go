@@ -64,7 +64,7 @@ func part2() {
 		conditions, password := split[0], split[1]
 
 		split = strings.SplitN(conditions, " ", 2)
-		limits, letter := split[0], split[1]
+		limits, letter := split[0], split[1][0]
 
 		split = strings.SplitN(limits, "-", 2)
 		pos1, err := strconv.Atoi(split[0])
@@ -76,15 +76,7 @@ func part2() {
 			panic(err)
 		}
 
-		var letterMatch = 0
-		if password[pos1-1] == letter[0] {
-			letterMatch++
-		}
-		if password[pos2-1] == letter[0] {
-			letterMatch++
-		}
-
-		if letterMatch == 1 {
+		if (password[pos1-1] == letter) != (password[pos2-1] == letter) {
 			matches++
 		}
 	}
