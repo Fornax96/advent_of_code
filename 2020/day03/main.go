@@ -2,38 +2,23 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	aoc "github.com/Fornax96/advent_of_code"
 )
 
 func main() {
-	f := aoc.FileScanner("input")
-	defer f.Close()
-
-	var treeMap [][]bool
-	for f.Scan() {
-		line := f.Text()
-		row := make([]bool, len(line))
-		for i, v := range line {
-			if v == '.' {
-				row[i] = false
-			} else if v == '#' {
-				row[i] = true
-			}
-		}
-
-		treeMap = append(treeMap, row)
-	}
-
-	fmt.Println("Answer 1:", part1(treeMap))
-	fmt.Println("Answer 2:", part2(treeMap))
+	defer aoc.PrintDuration(time.Now())
+	lines := aoc.FileLines("input")
+	fmt.Println("Answer 1:", part1(lines))
+	fmt.Println("Answer 2:", part2(lines))
 }
 
-func part1(lines [][]bool) (trees int) {
+func part1(lines []string) (trees int) {
 	var x, y = 3, 1
 
 	for y < len(lines) {
-		if line := lines[y]; line[x%len(line)] {
+		if line := lines[y]; line[x%len(line)] == '#' {
 			trees++
 		}
 
@@ -43,7 +28,7 @@ func part1(lines [][]bool) (trees int) {
 	return trees
 }
 
-func part2(lines [][]bool) (trees int) {
+func part2(lines []string) (trees int) {
 	type Slope struct {
 		xMod int
 		yMod int
@@ -54,7 +39,7 @@ func part2(lines [][]bool) (trees int) {
 		var x, y, slopeTrees = slope.xMod, slope.yMod, 0
 
 		for y < len(lines) {
-			if line := lines[y]; line[x%len(line)] {
+			if line := lines[y]; line[x%len(line)] == '#' {
 				slopeTrees++
 			}
 

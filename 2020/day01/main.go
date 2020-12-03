@@ -2,19 +2,14 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	aoc "github.com/Fornax96/advent_of_code"
 )
 
 func main() {
-	scanner := aoc.FileScanner("input")
-	defer scanner.Close()
-
-	var numbers []int
-	for scanner.Scan() {
-		numbers = append(numbers, aoc.AtoiOrBust(scanner.Text()))
-	}
-
+	defer aoc.PrintDuration(time.Now())
+	numbers := aoc.FileInts("input")
 	fmt.Println("Answer 1:", part1(numbers))
 	fmt.Println("Answer 2:", part2(numbers))
 }

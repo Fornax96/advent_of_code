@@ -3,23 +3,23 @@ package main
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	aoc "github.com/Fornax96/advent_of_code"
 )
 
 func main() {
-	fmt.Println("Answer 1:", part1())
-	fmt.Println("Answer 2:", part2())
+	defer aoc.PrintDuration(time.Now())
+	lines := aoc.FileLines("input")
+	fmt.Println("Answer 1:", part1(lines))
+	fmt.Println("Answer 2:", part2(lines))
 }
 
-func part1() int {
-	scanner := aoc.FileScanner("input")
-	defer scanner.Close()
-
+func part1(lines []string) int {
 	var matches = 0
 
-	for scanner.Scan() {
-		split := strings.SplitN(scanner.Text(), ": ", 2)
+	for _, line := range lines {
+		split := strings.SplitN(line, ": ", 2)
 		conditions, password := split[0], split[1]
 
 		split = strings.SplitN(conditions, " ", 2)
@@ -37,14 +37,11 @@ func part1() int {
 	return matches
 }
 
-func part2() int {
-	scanner := aoc.FileScanner("input")
-	defer scanner.Close()
-
+func part2(lines []string) int {
 	var matches = 0
 
-	for scanner.Scan() {
-		split := strings.SplitN(scanner.Text(), ": ", 2)
+	for _, line := range lines {
+		split := strings.SplitN(line, ": ", 2)
 		conditions, password := split[0], split[1]
 
 		split = strings.SplitN(conditions, " ", 2)
