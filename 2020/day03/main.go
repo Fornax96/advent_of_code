@@ -45,13 +45,12 @@ func part1(lines [][]bool) (trees int) {
 
 func part2(lines [][]bool) (trees int) {
 	type Slope struct {
-		xMod  int
-		yMod  int
-		trees int
+		xMod int
+		yMod int
 	}
 
 	trees = 1
-	for _, slope := range []Slope{{1, 1, 0}, {3, 1, 0}, {5, 1, 0}, {7, 1, 0}, {1, 2, 0}} {
+	for _, slope := range []Slope{{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}} {
 		var x, y, slopeTrees = slope.xMod, slope.yMod, 0
 
 		for y < len(lines) {
@@ -65,6 +64,5 @@ func part2(lines [][]bool) (trees int) {
 
 		trees *= slopeTrees
 	}
-
 	return trees
 }
