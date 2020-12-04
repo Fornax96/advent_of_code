@@ -84,12 +84,9 @@ func validateInt(s string, min, max int) bool {
 }
 func validateHeight(s string) bool {
 	if strings.HasSuffix(s, "cm") {
-		i := aoc.AtoiOrBust(strings.TrimRight(s, "cm"))
-		return i >= 150 && i <= 193
-	}
-	if strings.HasSuffix(s, "in") {
-		i := aoc.AtoiOrBust(strings.TrimRight(s, "in"))
-		return i >= 59 && i <= 76
+		return validateInt(strings.TrimRight(s, "cm"), 150, 193)
+	} else if strings.HasSuffix(s, "in") {
+		return validateInt(strings.TrimRight(s, "in"), 59, 76)
 	}
 	return false
 }
