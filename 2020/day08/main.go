@@ -63,7 +63,7 @@ func part2(lines []instruction) int {
 	// Get all the nop and jmp instructions in the loop, then swap them out and
 	// check if it solves the problem
 	for ins, count := range execCount {
-		if count == 100 && (lines[ins].op == "jmp" || lines[ins].op == "nop") {
+		if count == 2 && (lines[ins].op == "jmp" || lines[ins].op == "nop") {
 			// Make a copy of the instruction slice
 			copy(linesCopy, lines)
 
@@ -92,9 +92,8 @@ func exec(ins []instruction) (acc int, execCount map[int]int, ok bool) {
 			return acc, execCount, true
 		}
 
-		// Detect the loop and return the number of times each instruction was
-		// executed
-		if execCount[i] == 100 {
+		// If an instruction was executed twice it means we're caught in a loop
+		if execCount[i] == 2 {
 			return acc, execCount, false
 		}
 		execCount[i]++
