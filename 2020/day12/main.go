@@ -69,7 +69,6 @@ func part2(lines []string) int {
 				rot = -rot + 4
 			}
 
-			fmt.Printf("%s %d: rot %d\n", string(op), param, rot)
 			n, e := northWP, eastWP
 			switch rot {
 			case 1:
@@ -78,7 +77,6 @@ func part2(lines []string) int {
 			case 2:
 				northWP = -n
 				eastWP = -e
-				break
 			case 3:
 				northWP = e
 				eastWP = -n
@@ -87,8 +85,6 @@ func part2(lines []string) int {
 			north += northWP * param
 			east += eastWP * param
 		}
-
-		fmt.Printf("%-8s n%d e%d wpn%d wpe%d\n", line, north, east, northWP, eastWP)
 	}
 	return abs(north) + abs(east)
 }
